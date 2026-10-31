@@ -1,0 +1,219 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-md-8">
+
+        <div class="card shadow">
+
+            <div class="card-header bg-primary text-white">
+
+                <h4>Add Daily Internship Log</h4>
+
+            </div>
+
+
+            <div class="card-body">
+
+                <form method="POST">
+
+
+                    <!-- Student -->
+
+                    <div class="mb-3">
+
+                        <label>Student</label>
+
+                        <select
+                            name="student_id"
+                            class="form-control"
+                            required>
+
+                            <option value="">
+                                Select Student
+                            </option>
+
+                            {% for student in students %}
+
+                            <option value="{{ student.id }}">
+
+                                {{ student.usn }} -
+                                {{ student.name }}
+
+                            </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Project -->
+
+                    <div class="mb-3">
+
+                        <label>Project</label>
+
+                        <select
+                            name="project_id"
+                            class="form-control"
+                            required>
+
+                            <option value="">
+                                Select Project
+                            </option>
+
+                            {% for project in projects %}
+
+                            <option value="{{ project.id }}">
+
+                                {{ project.project_title }}
+
+                            </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Date -->
+
+                    <div class="mb-3">
+
+                        <label>Date</label>
+
+                        <input
+                            type="date"
+                            name="log_date"
+                            class="form-control"
+                            required>
+
+                    </div>
+
+
+                    <!-- Task -->
+
+                    <div class="mb-3">
+
+                        <label>Work / Task Completed</label>
+
+                        <textarea
+                            name="task"
+                            class="form-control"
+                            rows="4"
+                            placeholder="Describe the work completed today..."
+                            required></textarea>
+
+                    </div>
+
+
+                    <!-- Hours -->
+
+                    <div class="mb-3">
+
+                        <label>Hours Worked</label>
+
+                        <input
+                            type="number"
+                            name="hours_worked"
+                            class="form-control"
+                            min="0"
+                            max="24"
+                            step="0.5"
+                            placeholder="Example: 6.5"
+                            required>
+
+                    </div>
+
+
+                    <!-- Technology -->
+
+                    <div class="mb-3">
+
+                        <label>Technology / Skills Used</label>
+
+                        <input
+                            type="text"
+                            name="technology_used"
+                            class="form-control"
+                            placeholder="Example: Python, Flask, MySQL">
+
+                    </div>
+
+
+                    <!-- Status -->
+
+                    <div class="mb-3">
+
+                        <label>Status</label>
+
+                        <select
+                            name="status"
+                            class="form-control"
+                            required>
+
+                            <option value="Completed">
+                                Completed
+                            </option>
+
+                            <option value="In Progress">
+                                In Progress
+                            </option>
+
+                            <option value="Pending">
+                                Pending
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Remarks -->
+
+                    <div class="mb-3">
+
+                        <label>Remarks</label>
+
+                        <textarea
+                            name="remarks"
+                            class="form-control"
+                            rows="3"
+                            placeholder="Enter remarks"></textarea>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-success">
+
+                        Save Daily Log
+
+                    </button>
+
+
+                    <a
+                        href="/daily-logs"
+                        class="btn btn-secondary">
+
+                        Cancel
+
+                    </a>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

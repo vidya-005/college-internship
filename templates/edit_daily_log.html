@@ -1,0 +1,216 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-md-8">
+
+        <div class="card shadow">
+
+            <div class="card-header bg-warning">
+
+                <h4>Edit Daily Log</h4>
+
+            </div>
+
+            <div class="card-body">
+
+                <form method="POST">
+
+
+                    <div class="mb-3">
+
+                        <label>Student</label>
+
+                        <select
+                            name="student_id"
+                            class="form-control"
+                            required>
+
+                            {% for student in students %}
+
+                            <option
+                                value="{{ student.id }}"
+                                {% if student.id == log.student_id %}
+                                selected
+                                {% endif %}>
+
+                                {{ student.usn }} -
+                                {{ student.name }}
+
+                            </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label>Project</label>
+
+                        <select
+                            name="project_id"
+                            class="form-control"
+                            required>
+
+                            {% for project in projects %}
+
+                            <option
+                                value="{{ project.id }}"
+                                {% if project.id == log.project_id %}
+                                selected
+                                {% endif %}>
+
+                                {{ project.project_title }}
+
+                            </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label>Date</label>
+
+                        <input
+                            type="date"
+                            name="log_date"
+                            class="form-control"
+                            value="{{ log.log_date }}"
+                            required>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label>Work / Task</label>
+
+                        <textarea
+                            name="task"
+                            class="form-control"
+                            rows="4"
+                            required>{{ log.task }}</textarea>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label>Hours Worked</label>
+
+                        <input
+                            type="number"
+                            name="hours_worked"
+                            class="form-control"
+                            min="0"
+                            max="24"
+                            step="0.5"
+                            value="{{ log.hours_worked }}"
+                            required>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label>Technology Used</label>
+
+                        <input
+                            type="text"
+                            name="technology_used"
+                            class="form-control"
+                            value="{{ log.technology_used or '' }}">
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label>Status</label>
+
+                        <select
+                            name="status"
+                            class="form-control"
+                            required>
+
+                            <option value="Completed"
+                                {% if log.status == "Completed" %}
+                                selected
+                                {% endif %}>
+
+                                Completed
+
+                            </option>
+
+                            <option value="In Progress"
+                                {% if log.status == "In Progress" %}
+                                selected
+                                {% endif %}>
+
+                                In Progress
+
+                            </option>
+
+                            <option value="Pending"
+                                {% if log.status == "Pending" %}
+                                selected
+                                {% endif %}>
+
+                                Pending
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label>Remarks</label>
+
+                        <textarea
+                            name="remarks"
+                            class="form-control"
+                            rows="3">{{ log.remarks or '' }}</textarea>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-success">
+
+                        Update Log
+
+                    </button>
+
+
+                    <a
+                        href="/daily-logs"
+                        class="btn btn-secondary">
+
+                        Cancel
+
+                    </a>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Add Daily Log</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h2>Add Daily Log</h2>
+
+        <a href="/student-daily-logs"
+           class="btn btn-secondary">
+            Back to Daily Logs
+        </a>
+
+    </div>
+
+
+    <div class="alert alert-info">
+
+        <strong>Student:</strong>
+        {{ student.name }}
+
+        &nbsp; | &nbsp;
+
+        <strong>USN:</strong>
+        {{ student.usn }}
+
+    </div>
+
+
+    {% if projects %}
+
+    <div class="card shadow-sm">
+
+        <div class="card-header bg-primary text-white">
+
+            <h4 class="mb-0">
+                Daily Work Submission
+            </h4>
+
+        </div>
+
+
+        <div class="card-body">
+
+            <form method="POST">
+
+
+                <!-- Project -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Project
+                    </label>
+
+                    <select
+                        name="project_id"
+                        class="form-select"
+                        required>
+
+                        <option value="">
+                            -- Select Project --
+                        </option>
+
+                        {% for project in projects %}
+
+                        <option value="{{ project.id }}">
+
+                            {{ project.project_title }}
+
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+
+                <!-- Date -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Date
+                    </label>
+
+                    <input
+                        type="date"
+                        name="log_date"
+                        class="form-control"
+                        required>
+
+                </div>
+
+
+                <!-- Task -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Work / Task Completed
+                    </label>
+
+                    <textarea
+                        name="task"
+                        class="form-control"
+                        rows="4"
+                        placeholder="Describe the work completed today..."
+                        required></textarea>
+
+                </div>
+
+
+                <!-- Hours -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Hours Worked
+                    </label>
+
+                    <input
+                        type="number"
+                        name="hours_worked"
+                        class="form-control"
+                        min="0"
+                        max="24"
+                        step="0.5"
+                        placeholder="Example: 6"
+                        required>
+
+                </div>
+
+
+                <!-- Technology -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Technology / Skills Used
+                    </label>
+
+                    <input
+                        type="text"
+                        name="technology_used"
+                        class="form-control"
+                        placeholder="Example: Python, Flask, MySQL">
+
+                </div>
+
+
+                <!-- Status -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Status
+                    </label>
+
+                    <select
+                        name="status"
+                        class="form-select"
+                        required>
+
+                        <option value="">
+                            -- Select Status --
+                        </option>
+
+                        <option value="Completed">
+                            Completed
+                        </option>
+
+                        <option value="In Progress">
+                            In Progress
+                        </option>
+
+                        <option value="Pending">
+                            Pending
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Remarks -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Remarks
+                    </label>
+
+                    <textarea
+                        name="remarks"
+                        class="form-control"
+                        rows="3"
+                        placeholder="Additional remarks (optional)"></textarea>
+
+                </div>
+
+
+                <!-- Buttons -->
+
+                <div class="mt-4">
+
+                    <button
+                        type="submit"
+                        class="btn btn-success">
+
+                        Submit Daily Log
+
+                    </button>
+
+                    <a
+                        href="/student-daily-logs"
+                        class="btn btn-secondary">
+
+                        Cancel
+
+                    </a>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+    {% else %}
+
+    <div class="alert alert-warning">
+
+        <h5>No Project Available</h5>
+
+        <p class="mb-0">
+            You cannot submit a daily log because
+            no project has been assigned to you yet.
+        </p>
+
+    </div>
+
+    {% endif %}
+
+
+</div>
+
+</body>
+
+</html>

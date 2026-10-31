@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-md-7">
+
+        <div class="card shadow">
+
+            <div class="card-header bg-warning">
+
+                <h4>Edit Student</h4>
+
+            </div>
+
+
+            <div class="card-body">
+
+                <form method="POST">
+
+                    <div class="mb-3">
+
+                        <label>USN</label>
+
+                        <input
+                            type="text"
+                            name="usn"
+                            class="form-control"
+                            value="{{ student.usn }}"
+                            required>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label>Student Name</label>
+
+                        <input
+                            type="text"
+                            name="name"
+                            class="form-control"
+                            value="{{ student.name }}"
+                            required>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label>Email</label>
+
+                        <input
+                            type="email"
+                            name="email"
+                            class="form-control"
+                            value="{{ student.email }}"
+                            required>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label>Phone</label>
+
+                        <input
+                            type="text"
+                            name="phone"
+                            class="form-control"
+                            value="{{ student.phone }}"
+                            required>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label>Course</label>
+
+                        <input
+                            type="text"
+                            name="course"
+                            class="form-control"
+                            value="{{ student.course }}"
+                            required>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label>Semester</label>
+
+                        <select
+                            name="semester"
+                            class="form-control"
+                            required>
+
+                            {% for sem in range(1, 7) %}
+
+                            <option
+                                value="{{ sem }}"
+                                {% if student.semester == sem %}selected{% endif %}>
+
+                                {{ sem }} Semester
+
+                            </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-success">
+
+                        Update Student
+
+                    </button>
+
+
+                    <a
+                        href="/students"
+                        class="btn btn-secondary">
+
+                        Cancel
+
+                    </a>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

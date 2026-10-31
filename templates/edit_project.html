@@ -1,0 +1,219 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-md-8">
+
+        <div class="card shadow">
+
+            <div class="card-header bg-warning">
+
+                <h4>Edit Project</h4>
+
+            </div>
+
+            <div class="card-body">
+
+                <form method="POST">
+
+
+                    <div class="mb-3">
+
+                        <label>Student</label>
+
+                        <select
+                            name="student_id"
+                            class="form-control"
+                            required>
+
+                            {% for student in students %}
+
+                            <option
+                                value="{{ student.id }}"
+                                {% if student.id == project.student_id %}
+                                selected
+                                {% endif %}>
+
+                                {{ student.usn }} -
+                                {{ student.name }}
+
+                            </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label>Project Title</label>
+
+                        <input
+                            type="text"
+                            name="project_title"
+                            class="form-control"
+                            value="{{ project.project_title }}"
+                            required>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label>Project Type</label>
+
+                        <select
+                            name="project_type"
+                            class="form-control"
+                            required>
+
+                            <option value="Mini Project"
+                                {% if project.project_type == "Mini Project" %}selected{% endif %}>
+                                Mini Project
+                            </option>
+
+                            <option value="Major Project"
+                                {% if project.project_type == "Major Project" %}selected{% endif %}>
+                                Major Project
+                            </option>
+
+                            <option value="Internship Project"
+                                {% if project.project_type == "Internship Project" %}selected{% endif %}>
+                                Internship Project
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label>Technology</label>
+
+                        <input
+                            type="text"
+                            name="technology"
+                            class="form-control"
+                            value="{{ project.technology }}"
+                            required>
+
+                    </div>
+
+
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+
+                            <label>Start Date</label>
+
+                            <input
+                                type="date"
+                                name="start_date"
+                                class="form-control"
+                                value="{{ project.start_date }}">
+
+                        </div>
+
+
+                        <div class="col-md-6 mb-3">
+
+                            <label>End Date</label>
+
+                            <input
+                                type="date"
+                                name="end_date"
+                                class="form-control"
+                                value="{{ project.end_date }}">
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label>Status</label>
+
+                        <select
+                            name="status"
+                            class="form-control"
+                            required>
+
+                            <option value="Planned"
+                                {% if project.status == "Planned" %}selected{% endif %}>
+                                Planned
+                            </option>
+
+                            <option value="Ongoing"
+                                {% if project.status == "Ongoing" %}selected{% endif %}>
+                                Ongoing
+                            </option>
+
+                            <option value="Completed"
+                                {% if project.status == "Completed" %}selected{% endif %}>
+                                Completed
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label>GitHub Repository Link</label>
+
+                        <input
+                            type="url"
+                            name="github_link"
+                            class="form-control"
+                            value="{{ project.github_link or '' }}">
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label>Description</label>
+
+                        <textarea
+                            name="description"
+                            class="form-control"
+                            rows="5">{{ project.description or '' }}</textarea>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-success">
+
+                        Update Project
+
+                    </button>
+
+
+                    <a
+                        href="/projects"
+                        class="btn btn-secondary">
+
+                        Cancel
+
+                    </a>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2>Admin Dashboard</h2>
+            <p class="text-muted">
+                Welcome, {{ username }}
+            </p>
+        </div>
+
+        <a href="/logout" class="btn btn-danger">
+            Logout
+        </a>
+    </div>
+
+    <div class="row g-4">
+
+        <!-- Students -->
+        <div class="col-md-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5>Students</h5>
+                    <p>Manage student records</p>
+                    <a href="/students" class="btn btn-primary">
+                        View Students
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Faculty -->
+        <div class="col-md-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5>Faculty</h5>
+                    <p>Manage faculty</p>
+                    <a href="/faculty" class="btn btn-primary">
+                        View Faculty
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Internships -->
+        <div class="col-md-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5>Internships</h5>
+                    <p>Manage internships</p>
+                    <a href="/internships" class="btn btn-primary">
+                        View Internships
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Projects -->
+        <div class="col-md-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5>Projects</h5>
+                    <p>Manage student projects</p>
+                    <a href="/projects" class="btn btn-primary">
+                        View Projects
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Daily Logs -->
+        <div class="col-md-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Daily Logs</h5>
+                    <p class="card-text">
+                        Manage student internship and project daily logs.
+                    </p>
+                    <a href="/daily-logs" class="btn btn-primary">
+                        View Daily Logs
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Faculty–Student Assignment -->
+        <div class="col-md-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Faculty–Student Assignment</h5>
+                    <p class="card-text">
+                        Assign students to faculty members.
+                    </p>
+                    <a href="{{ url_for('faculty_assignments') }}"
+                       class="btn btn-primary">
+                        Manage Assignments
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project Progress Report -->
+        <div class="col-md-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Project Progress Report</h5>
+                    <p class="card-text">
+                        View student projects, project status, and evaluation marks.
+                    </p>
+                    <a href="{{ url_for('admin_project_report') }}"
+                       class="btn btn-primary">
+                        View Report
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

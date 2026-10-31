@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-md-7">
+
+        <div class="card shadow">
+
+            <div class="card-header bg-warning">
+
+                <h4>Edit Faculty</h4>
+
+            </div>
+
+            <div class="card-body">
+
+                <form method="POST">
+
+                    <div class="mb-3">
+
+                        <label>Faculty ID</label>
+
+                        <input
+                            type="text"
+                            name="faculty_id"
+                            class="form-control"
+                            value="{{ faculty.faculty_id }}"
+                            required>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label>Name</label>
+
+                        <input
+                            type="text"
+                            name="name"
+                            class="form-control"
+                            value="{{ faculty.name }}"
+                            required>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label>Email</label>
+
+                        <input
+                            type="email"
+                            name="email"
+                            class="form-control"
+                            value="{{ faculty.email }}"
+                            required>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label>Phone</label>
+
+                        <input
+                            type="text"
+                            name="phone"
+                            class="form-control"
+                            value="{{ faculty.phone }}"
+                            required>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label>Department</label>
+
+                        <input
+                            type="text"
+                            name="department"
+                            class="form-control"
+                            value="{{ faculty.department }}"
+                            required>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label>Designation</label>
+
+                        <select
+                            name="designation"
+                            class="form-control"
+                            required>
+
+                            <option value="Lecturer"
+                                {% if faculty.designation == "Lecturer" %}selected{% endif %}>
+                                Lecturer
+                            </option>
+
+                            <option value="Assistant Professor"
+                                {% if faculty.designation == "Assistant Professor" %}selected{% endif %}>
+                                Assistant Professor
+                            </option>
+
+                            <option value="Associate Professor"
+                                {% if faculty.designation == "Associate Professor" %}selected{% endif %}>
+                                Associate Professor
+                            </option>
+
+                            <option value="Professor"
+                                {% if faculty.designation == "Professor" %}selected{% endif %}>
+                                Professor
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-success">
+
+                        Update Faculty
+
+                    </button>
+
+
+                    <a
+                        href="/faculty"
+                        class="btn btn-secondary">
+
+                        Cancel
+
+                    </a>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

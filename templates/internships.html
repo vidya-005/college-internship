@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <h2>Internship Management</h2>
+
+    <a href="/internships/add" class="btn btn-primary">
+        + Add Internship
+    </a>
+
+</div>
+
+
+<!-- Search -->
+
+<form method="GET" action="/internships" class="mb-4">
+
+    <div class="input-group">
+
+        <input
+            type="text"
+            name="search"
+            class="form-control"
+            placeholder="Search company or student..."
+            value="{{ search }}">
+
+        <button
+            class="btn btn-primary"
+            type="submit">
+
+            Search
+
+        </button>
+
+        <a
+            href="/internships"
+            class="btn btn-secondary">
+
+            Clear
+
+        </a>
+
+    </div>
+
+</form>
+
+
+<div class="card shadow-sm">
+
+    <div class="card-body">
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-hover">
+
+                <thead class="table-primary">
+
+                    <tr>
+
+                        <th>ID</th>
+                        <th>Student</th>
+                        <th>Company</th>
+                        <th>Title</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Mode</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for internship in internships %}
+
+                    <tr>
+
+                        <td>
+                            {{ internship.id }}
+                        </td>
+
+                        <td>
+                            {{ internship.student.name }}
+                        </td>
+
+                        <td>
+                            {{ internship.company_name }}
+                        </td>
+
+                        <td>
+                            {{ internship.internship_title }}
+                        </td>
+
+                        <td>
+                            {{ internship.start_date }}
+                        </td>
+
+                        <td>
+                            {{ internship.end_date }}
+                        </td>
+
+                        <td>
+                            {{ internship.mode }}
+                        </td>
+
+                        <td>
+
+                            {% if internship.status == "Completed" %}
+
+                            <span class="badge bg-success">
+                                Completed
+                            </span>
+
+                            {% elif internship.status == "Ongoing" %}
+
+                            <span class="badge bg-warning text-dark">
+                                Ongoing
+                            </span>
+
+                            {% else %}
+
+                            <span class="badge bg-secondary">
+                                {{ internship.status }}
+                            </span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <td>
+
+                            <a
+                                href="/internships/edit/{{ internship.id }}"
+                                class="btn btn-sm btn-warning">
+
+                                Edit
+
+                            </a>
+
+                            <a
+                                href="/internships/delete/{{ internship.id }}"
+                                class="btn btn-sm btn-danger"
+                                onclick="return confirm('Are you sure you want to delete this internship?');">
+
+                                Delete
+
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    {% else %}
+
+                    <tr>
+
+                        <td
+                            colspan="9"
+                            class="text-center">
+
+                            No internships found.
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

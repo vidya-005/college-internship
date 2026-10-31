@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Evaluation</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            padding: 25px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px #00000012;
+        }
+
+        h2 {
+            color: #243b64;
+        }
+
+        label {
+            display: block;
+            margin-top: 18px;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 7px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        button {
+            background: #243b64;
+            color: white;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 4px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .message {
+            background: #fce8e6;
+            padding: 10px;
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+
+    <p>
+        <a href="{{ url_for('faculty_projects') }}">
+            &larr; Back to Projects
+        </a>
+    </p>
+
+    <div class="card">
+        <h2>Project Evaluation</h2>
+
+        <p>
+            <strong>Student:</strong>
+            {{ project.student.name }}
+        </p>
+
+        <p>
+            <strong>USN:</strong>
+            {{ project.student.usn }}
+        </p>
+
+        <p>
+            <strong>Project Title:</strong>
+            {{ project.project_title }}
+        </p>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}
+                <div class="message">{{ message }}</div>
+            {% endfor %}
+        {% endwith %}
+
+        <form method="POST">
+
+            <label for="evaluation_marks">
+                Evaluation Marks (out of 100)
+            </label>
+
+            <input
+                type="number"
+                id="evaluation_marks"
+                name="evaluation_marks"
+                min="0"
+                max="100"
+                step="1"
+                value="{{ project.evaluation_marks if project.evaluation_marks is not none else '' }}"
+                required
+            >
+
+            <label for="faculty_feedback">
+                Faculty Feedback
+            </label>
+
+            <textarea
+                id="faculty_feedback"
+                name="faculty_feedback"
+                placeholder="Enter project feedback and suggestions..."
+            >
+            {{ project.faculty_feedback or '' }}
+        </textarea>
+
+            <button type="submit">Save Evaluation</button>
+
+        </form>
+    </div>
+
+</div>
+</body>
+</html>

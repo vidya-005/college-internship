@@ -1,0 +1,202 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-md-8">
+
+        <div class="card shadow">
+
+            <div class="card-header bg-primary text-white">
+
+                <h4>Add Internship</h4>
+
+            </div>
+
+            <div class="card-body">
+
+                <form method="POST">
+
+
+                    <div class="mb-3">
+
+                        <label>Student</label>
+
+                        <select
+                            name="student_id"
+                            class="form-control"
+                            required>
+
+                            <option value="">
+                                Select Student
+                            </option>
+
+                            {% for student in students %}
+
+                            <option value="{{ student.id }}">
+
+                                {{ student.usn }} -
+                                {{ student.name }}
+
+                            </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label>Company Name</label>
+
+                        <input
+                            type="text"
+                            name="company_name"
+                            class="form-control"
+                            placeholder="Example: Infosys"
+                            required>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label>Internship Title</label>
+
+                        <input
+                            type="text"
+                            name="internship_title"
+                            class="form-control"
+                            placeholder="Example: Python Developer Intern"
+                            required>
+
+                    </div>
+
+
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+
+                            <label>Start Date</label>
+
+                            <input
+                                type="date"
+                                name="start_date"
+                                class="form-control"
+                                required>
+
+                        </div>
+
+
+                        <div class="col-md-6 mb-3">
+
+                            <label>End Date</label>
+
+                            <input
+                                type="date"
+                                name="end_date"
+                                class="form-control"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label>Mode</label>
+
+                        <select
+                            name="mode"
+                            class="form-control"
+                            required>
+
+                            <option value="Offline">
+                                Offline
+                            </option>
+
+                            <option value="Online">
+                                Online
+                            </option>
+
+                            <option value="Hybrid">
+                                Hybrid
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label>Status</label>
+
+                        <select
+                            name="status"
+                            class="form-control"
+                            required>
+
+                            <option value="Planned">
+                                Planned
+                            </option>
+
+                            <option value="Ongoing">
+                                Ongoing
+                            </option>
+
+                            <option value="Completed">
+                                Completed
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label>Description</label>
+
+                        <textarea
+                            name="description"
+                            class="form-control"
+                            rows="4"
+                            placeholder="Enter internship details">
+                        </textarea>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-success">
+
+                        Save Internship
+
+                    </button>
+
+
+                    <a
+                        href="/internships"
+                        class="btn btn-secondary">
+
+                        Cancel
+
+                    </a>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
